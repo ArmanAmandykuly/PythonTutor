@@ -1,0 +1,1 @@
+{"books": [{"title": "lol", "author": "lol", "year": "2000", "genre": "lol", "status": "Not booked"}, {"title": "lol1", "author": "lol", "year": "2000", "genre": "lol", "status": "Not booked"}], "ratings": {"scores": {"lol": 5, "lol1": 1}, "titles": {"lol": [{"score": 5, "comment": "lol"}], "lol1": [{"score": 1, "comment": "lol"}]}}}
