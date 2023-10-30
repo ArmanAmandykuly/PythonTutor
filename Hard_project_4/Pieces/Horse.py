@@ -1,17 +1,16 @@
 from Piece import *
-class Bishop(Piece):
+class Horse(Piece):
     def __init__(self, pos, board, color = "w"):
-        super().__init__(pos, board, "b", color)
-
+        super().__init__(pos, board, "h", color)
+        
     def moveCheck(self, move):
         if not self._moveCheck(move):
             return False
         
-        dis = Metric.distance(self.pos, move)
-        if abs(dis[0]) != abs(dis[1]):
+        if set(map(abs, Metric.distance(self.pos, move))) != {1, 2}:
             return False
         
-        if abs(dis[0]) != abs(dis[1]):
+        if self.board[move] != None and self.board[move].color == self.color:
             return False
         
         return True

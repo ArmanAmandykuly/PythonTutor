@@ -13,11 +13,12 @@ class BoardPainter:
 
     def colorize(board):
         colored = board.board.copy()
-        for i in range(8):
-            for j in range(8):
-                bg, c = "w", board[i][j][0]
+        for i, row in enumerate(board):
+            for j, cell in enumerate(row):
+                print(row)
+                bg, c = "w", cell
                 if ((i + j) & 1):
                     bg = "b"
-                colored[i][j] = BoardPainter.colorizeCell(board[i][j], c + bg)
+                colored[i][j] = BoardPainter.colorizeCell(cell, c + bg)
 
-        return "\n".join(map(lambda x: "".join(x) + "\x1b[0;37;40m", colored)) + "\x1b[1;37;40m"
+        return "\n".join(map(lambda x: chr(ord('1') + x[0]) + "".join(x[1]) + "\x1b[0;37;40m", enumerate(colored))) + "\x1b[1;37;40m" + "\nabcdefgh"

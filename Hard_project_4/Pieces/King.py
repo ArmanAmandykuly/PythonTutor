@@ -1,17 +1,18 @@
 from Piece import *
 class King(Piece):
-    def __init__(self, pos, color = "w"):
-        super().__init__(pos, "k", color)
-
-    def move(self, newPos):
-        if not self.moveCheck(newPos):
-            return False
-        self.pos = newPos
-        return True
+    def __init__(self, pos, board, color = "w"):
+        super().__init__(pos, "k", color, board)
 
     def moveCheck(self, move):
-        if ord(move[0]) > '8' or ord(move[0]) < '1' or ord(move[1]) > 'h' or ord(move[1]) < 'a':
+        if not self._moveCheck(move):
             return False
-        if abs(ord(self.pos[0]) - ord(move[0])) > 1 or abs(ord(self.pos[1]) - ord(move[1])):
+        
+        dis = Metric.distance(self.pos, move)
+
+        if abs(dis[0]) > 1 or abs(dis[1]) > 1:
             return False
+        
+        if self.board[move] != None and self.board[move].color == self.color:
+            return False
+        
         return True
