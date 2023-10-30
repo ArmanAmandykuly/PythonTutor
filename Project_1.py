@@ -50,7 +50,7 @@ def userMenu():
         
     def filterRequest(message):
         inputString = input(message)
-        if inputString == "exit":
+        if inputString.lower() == "exit":
             print("Goodbye!")
             exit()
         
@@ -67,6 +67,8 @@ def userMenu():
                 inputString = filterRequest(repeatMessage)
 
         return inputString
+    
+    request("Please, enter a number", "", True)
     
     def createNewAccount(counters):
         name = request("Please, input your name: ")
@@ -137,9 +139,8 @@ exit - to exit
 """
     
     while True:
-        s = request(menuText, menuText, lambda s: s in operationDict.keys())
+        s = request(menuText, "Please, enter a valid command: ", lambda s: s in operationDict.keys())
         operationDict[s]()
-
 
 if __name__ == '__main__':
     userMenu()
