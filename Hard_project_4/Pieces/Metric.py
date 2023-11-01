@@ -33,7 +33,7 @@ class Metric:
 
         inc = k
 
-        while not Metric.isOut(Metric.move(pos, k)):
+        while not Metric.isOut(pos) and Metric.move(pos) != move:
             yield Metric.move(pos, k)
             k[0] += inc[0]
             k[1] += inc[1]

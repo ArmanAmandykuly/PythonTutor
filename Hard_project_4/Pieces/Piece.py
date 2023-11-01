@@ -18,6 +18,8 @@ class Piece:
             return False
         if self.pos == move:
             return False
+        if self.board[move] != None and self.board[move].color == self.color:
+            return False
         return True
         
     def moveCheck(self, move):

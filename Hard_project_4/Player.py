@@ -4,7 +4,8 @@ class Player:
 
     def move(self):
         inp = input("Enter current position and next position: ").split()
-        if inp[0] == "save":
+
+        if inp != '' and inp[0] == "save":
             return "save"
         while not self.validPos(inp):
             inp = input("Please, input valid ones: ").split()
@@ -13,6 +14,8 @@ class Player:
         return inp
 
     def validPos(self, inp):
+        if inp == []:
+            return False
         if len(inp) != 2:
             return False
         if len(inp[0]) != 2 or len(inp[1]) != 2:

@@ -1,9 +1,16 @@
 from BoardPainter import *
 from Reader import *
 class Board:
-    def __init__(self):
-        self.board = [[' ' for i in range(8)] for j in range(8)]
-        self.boardInit()
+    def __init__(self, *args):
+        self.reader = Reader(self)
+        if len(args) == 0:
+            self.board = [[' ' for i in range(8)] for j in range(8)]
+            self.boardInit()
+        else:
+            self.board = self.formatToBoard(args[0])
+
+    def formatToBoard(self, board):
+        return list(map(lambda x: self.reader.parse(x[1], x[0], self), enumerate(board)))
 
     def boardInit(self, path = "initBoard.txt"):
         try:

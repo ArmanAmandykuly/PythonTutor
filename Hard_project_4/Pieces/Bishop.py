@@ -14,4 +14,8 @@ class Bishop(Piece):
         if abs(dis[0]) != abs(dis[1]):
             return False
         
+        for x in Metric.iterate(x, move):
+            if x != None:
+                return False
+        
         return True

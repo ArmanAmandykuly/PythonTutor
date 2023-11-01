@@ -24,5 +24,4 @@ class AI(Player):
                 for j in range(8):
                     x = chr(ord('1') + i) + chr(ord('a') + j)
                     if self.board[randInd].moveCheck(x):
-                        self.board[randInd].move(x)
                         return [randInd, x]

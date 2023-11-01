@@ -6,6 +6,7 @@ from Pieces.Piece import *
 from Player import *
 from AI import *
 from Writer import *
+from time import sleep
 class Game:
     def __init__(self, *args):
         if len(args) != 2:
@@ -16,7 +17,7 @@ class Game:
     def _init2(self, path):
         with open(path, "r") as f:
             data = json.load(f)
-            self.board = data['board']
+            self.board = Board(data['board'])
             self.player1 = Player(data['p1'])
             self.player2 = Player(data['p2'])
             self.curPlayer = Player(data['cp'])
@@ -24,7 +25,7 @@ class Game:
             self.win = data['win']
             self.ai = data['ai']
             if self.ai:
-                self.player2 = AI()
+                self.player2 = AI(self.board)
 
 
     def _init1(self, player1, player2):
@@ -38,7 +39,11 @@ class Game:
 
     def turn(self):
         if not self.checkKing(self.curColor):
-            self.win = self.curColor
+            if self.curColor == "w":
+                self.win = "b"
+            else:
+                self.win = "w"
+            
         if self.win == "w":
             print(self.board)
             print(f"White won!\nCongratz, {self.player1.name}")
@@ -48,7 +53,8 @@ class Game:
             print(f"Black won!\nCongratz, {self.player2.name}")
             return True
         
-        print(self.board)
+        if not self.ai or self.curPlayer.name != 'ai':
+            print(self.board)
         inp = self.curPlayer.move()
         if inp == "save":
             self.save()
@@ -60,7 +66,7 @@ class Game:
         pColor = self.board[pos].color
         if pColor != self.curColor:
             raise RuntimeError("Player cannot use pieces of this color")
-        
+
         self.board[pos].move(move)
         if self.curPlayer == self.player1:
             self.curPlayer = self.player2
@@ -93,7 +99,7 @@ class Game:
             "ai" : self.ai
         }
         with open(file, "w") as f:
-            json.dump(state)
+            json.dump(state, f)
     
 if __name__ == "__main__":
     game = Game(Player("troll1"), Player("troll2"))

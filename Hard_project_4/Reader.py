@@ -23,7 +23,9 @@ class Reader:
             self.pieces.reverse()
     
     def parse(self, row, i, board):
-        return list(map(lambda x:self.typeToPiece[x[1][1]](chr(ord('8') - i) + chr(ord('a') + x[0]), board, x[1][0]), enumerate(row)))
+        print(row, i)
+        k = list(map(lambda x:self.typeToPiece[x[1][1]](chr(ord('8') - i) + chr(ord('a') + x[0]), board, x[1][0]), enumerate(row)))
+        return k
     
     def get(self):
         return self.pieces

@@ -28,7 +28,7 @@ class Main:
         p = input("Please, enter the name of a player(red): ")
         while p not in self.players:
             p = input("Please, enter the name of a player that alreadty exists: ")
-        game = Game(Player(p), Player("AI"))
+        game = Game(Player(p), Player("ai"))
         game.player2 = AI(game.board)
         game.ai = True
         print(game.win)
@@ -36,25 +36,26 @@ class Main:
             try:
                 game.turn()
             except Exception as e:
-                print("ERROR:", e)
+                if game.curPlayer.name != 'ai':
+                    print("ERROR:", e)
         if game.win == 'w':
             self.players[game.player1.name].append("win")
             self.players[game.player2.name].append("lose")
 
     def loadGame(self):
         path = input("Input the filepath: ")
-        try:
-            game = Game(path)
-            while game.win == 'x':
-                try:
-                    game.turn()
-                except Exception as e:
-                    print("ERROR:", e)
-                if game.win == 'w':
-                    self.players[game.player1.name].append("win")
-                    self.players[game.player2.name].append("lose")
-        except:
-            print(f"ERROR: {path} is not found")
+        # try:
+        game = Game(path)
+        while game.win == 'x':
+            # try:
+            game.turn()
+            # except Exception as e:
+            #     print("ERROR:", e)
+            if game.win == 'w':
+                self.players[game.player1.name].append("win")
+                self.players[game.player2.name].append("lose")
+        # except:
+        #     print(f"ERROR: {path} is not found")
     
     def menu(self):
         while True:
