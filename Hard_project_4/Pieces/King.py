@@ -1,7 +1,7 @@
-from Piece import *
+from .Piece import *
 class King(Piece):
     def __init__(self, pos, board, color = "w"):
-        super().__init__(pos, "k", color, board)
+        super().__init__(pos, board, "k", color)
 
     def moveCheck(self, move):
         if not self._moveCheck(move):

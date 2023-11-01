@@ -1,4 +1,4 @@
-from Piece import *
+from .Piece import *
 class Bishop(Piece):
     def __init__(self, pos, board, color = "w"):
         super().__init__(pos, board, "b", color)

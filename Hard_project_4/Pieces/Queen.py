@@ -1,4 +1,4 @@
-from Piece import *
+from .Piece import *
 class Queen(Piece):
     def __init__(self, pos, board, color = "w"):
         super().__init__(pos, board, "q", color)

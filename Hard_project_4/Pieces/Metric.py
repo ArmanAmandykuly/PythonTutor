@@ -7,14 +7,14 @@ class Metric:
     
     def isOut(a = "1a"):
         if a[0] < '1':
-            return False
+            return True
         if a[0] > '8':
-            return False
+            return True
         if a[1] < 'a':
-            return False
+            return True
         if a[1] > 'h':
-            return False
-        return True
+            return True
+        return False
     
     def iterate(pos, move):
         if pos == move:
@@ -28,8 +28,8 @@ class Metric:
         k = [0, 0]
 
         for i in range(2):
-            if dis[i] > 0:
-                k[i] = dis[i]/abs(dis[i])
+            if dis[i] != 0:
+                k[i] = int(dis[i]/abs(dis[i]))
 
         inc = k
 
@@ -37,5 +37,3 @@ class Metric:
             yield Metric.move(pos, k)
             k[0] += inc[0]
             k[1] += inc[1]
-
-        raise StopIteration
