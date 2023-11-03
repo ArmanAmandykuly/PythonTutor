@@ -5,7 +5,7 @@ from AI import *
 class Main:
     def __init__(self):
         self.players = dict()
-        self.players['AI'] = []
+        self.players['ai'] = []
     
     def createPlayer(self):
         name = input("Please, enter your name: ")
