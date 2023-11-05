@@ -43,3 +43,13 @@ class Interface:
     
     def listDatasets(self):
         print("Datasets: ",','.join(self.datasets.keys()))
+    
+    def main(self):
+        while True:
+            command = input()
+            if command not in self.commands:
+                continue
+            try:
+                self.commands[command]()
+            except Exception as e:
+                print("ERROR: ", e)

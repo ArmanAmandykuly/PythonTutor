@@ -1,11 +1,10 @@
 from DataProcessor import *
 from decorators import *
-from Generator import *
 from recursiveSearch import *
+from Interface import *
 
 if __name__ == "__main__":
     
+    interface = Interface()
 
-    while True:
-        command = input()
-        
+    
