@@ -27,6 +27,7 @@ class LogDecorator:
 
 if __name__ == "__main__":
     from math import exp
+    from CacheDecorator import *
     logs = []
     func = LogDecorator(print, logs = logs)
     func("Hello World")

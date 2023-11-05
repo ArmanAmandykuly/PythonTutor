@@ -19,6 +19,15 @@ class Interface:
         while name not in self.datasets:
             name = input("Please, input the valid one: ")
         self.curDataset = self.datasets[name]
+
+    def addOperation(self):
+        self.curDataset.add(op)
+    
+    def seeLogs(self):
+        print(self.logs)
+
+    def execute(self):
+        print(self.curDataset.execute())
     
     def addData(self):
         filepath = input("Enter the filepath: ")
